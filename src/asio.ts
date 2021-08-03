@@ -1,14 +1,11 @@
-import { sep, resolve } from 'path';
+import { resolve } from 'path';
 import { LLVM } from 'smake';
 
 export function asio(t: LLVM) {
   Object.defineProperty(t, 'sysIncludedirs', {
     value: [
       ...t.sysIncludedirs,
-      resolve(__dirname, '..', 'asio', 'asio', 'include').replace(
-        new RegExp(sep, 'g'),
-        '/'
-      ),
+      resolve(__dirname, '..', 'asio', 'asio', 'include').replace(/\\/g, '/'),
     ],
     configurable: true,
   });
